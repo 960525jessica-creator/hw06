@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<!-- HW06：台中中央公園報導，HTML 與 CSS 放在同一個檔案。 -->
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="走進台中中央公園，認識十二感官體驗、樂活步道、抹茶湖與自然生態。">
+    <meta name="author" content="曾宇婕">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:title" content="台中中央公園報導｜城市裡的綠色寶藏">
+    <meta property="og:description" content="認識台中中央公園的自然生態、十二感官體驗、樂活步道與抹茶湖。">
+    <meta property="og:image:alt" content="台中中央公園的綠地與自然景觀">
+
+    <title>台中中央公園報導｜城市裡的綠色寶藏</title>
+
+    <style>
+        /* 全域選擇器：讓寬度計算包含內距與框線。 */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* 元素選擇器：設定整頁字型、文字顏色、背景與行高。 */
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            font-size: 17px;
+            line-height: 1.85;
+            color: #514238;
+            background-color: #F7F1E8;
+        }
+
+        /* 頁首採用摩卡棕，搭配焦糖色框線。 */
+        header {
+            padding: 34px 36px;
+            color: #FFFAF2;
+            background-color: #6F5142;
+            border-top: 6px solid #C6A27B;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 2rem;
+            line-height: 1.4;
+            letter-spacing: 0.04em;
+        }
+
+        header p {
+            margin: 10px 0;
+        }
+
+        small {
+            font-size: 0.86em;
+        }
+
+        /* 導覽區使用淺奶茶色。 */
+        nav {
+            margin: 24px 0;
+            padding: 20px 24px;
+            background-color: #EEE1D2;
+            border: 1px solid #D9C7B5;
+            border-radius: 8px;
+        }
+
+        nav h2 {
+            margin-top: 0;
+            padding: 0;
+            border: 0;
+            font-size: 1.15rem;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 4px 6px 4px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #FFFDFA;
+            border: 1px solid #D9C7B5;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        /* 連結使用奶茶深棕色。 */
+        a {
+            color: #805C43;
+            text-underline-offset: 4px;
+            overflow-wrap: anywhere;
+        }
+
+        /* 滑鼠移入與鍵盤焦點效果。 */
+        a:hover {
+            color: #A36F43;
+            text-decoration: underline;
+        }
+
+        a:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid #B8865B;
+            outline-offset: 4px;
+        }
+
+        /* 章節區塊共用留白、背景、框線與圓角。 */
+        section,
+        aside {
+            margin: 24px 0;
+            padding: 24px 28px;
+            background-color: #FFFEFA;
+            border: 1px solid #E2D3C3;
+            border-radius: 8px;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            padding-left: 12px;
+            border-left: 4px solid #A27C5B;
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+
+        h3 {
+            margin: 22px 0 10px;
+            color: #75523D;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin: 12px 0;
+        }
+
+        ul,
+        ol {
+            padding-left: 1.6em;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        hr {
+            margin: 26px 0;
+            border: 0;
+            border-top: 1px solid #DFD0C0;
+        }
+
+        /* 表格框線由 CSS 控制，不使用 border="1"。 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+            overflow-wrap: anywhere;
+        }
+
+        caption {
+            margin-bottom: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #D6C3B0;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        thead {
+            background-color: #EAD9C7;
+        }
+
+        tbody th {
+            background-color: #F4E9DC;
+        }
+
+        /* 圖片自動縮小並維持原本比例。 */
+        figure {
+            margin: 18px 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            color: #75665A;
+            font-size: 0.86em;
+        }
+
+        /* iframe 共用設定，避免媒體超出內容區。 */
+        iframe {
+            display: block;
+            max-width: 100%;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        /* class 選擇器：影片維持 16:9 比例。 */
+        .video-frame {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
+        /* class 選擇器：地圖使用較高的顯示區域。 */
+        .map-frame {
+            width: 100%;
+            height: 360px;
+        }
+
+        /* ID 選擇器：特別標示走讀提醒區。 */
+        #tips {
+            background-color: #F0E3D4;
+            border-left: 5px solid #B18A65;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 32px;
+            padding: 20px 0;
+            border-top: 2px solid #A27C5B;
+            color: #75665A;
+            text-align: center;
+        }
+
+        /* 手機版：減少內距並調整標題及表格字級。 */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+                font-size: 16px;
+            }
+
+            header,
+            nav,
+            section,
+            aside {
+                padding: 20px 16px;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            th,
+            td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header 是頁首；top 是回到頁首連結的目的地。 -->
+    <header id="top">
+        <h1>台中中央公園：城市裡的綠色寶藏</h1>
+        <p><small>城市走讀・自然生態・休閒探索</small></p>
+        <p><strong>離開城市的喧鬧，走進寬廣綠地，重新認識台中的自然風景。</strong></p>
+
+        <!-- 方法一（1/3）：行內樣式凸顯本篇報導的主題。 -->
+        <p>本期焦點：
+            <mark style="background-color: #E8D2B8; color: #594333; padding: 2px 6px;">十二感官體驗、抹茶湖與自然生態</mark>
+        </p>
+
+        <p>作者：曾宇婕｜報導整理日期：2026年10月21日
+            <time datetime="2026-10-21">2026 年 10 月 21 日</time>
+        </p>
+
+        <!-- 方法一（2/3）：行內樣式讓聲明文字呈現斜體。 -->
+        <p><small style="font-style: italic;">本文為資料整理型課堂報導，非現場採訪紀錄。</small></p>
+    </header>
+
+    <!-- nav 是頁內目錄，連結會跳到相同 id 的章節。 -->
+    <nav aria-label="報導目錄">
+        <h2>報導目錄</h2>
+        <ul>
+            <li><a href="#intro">中央公園簡介</a></li>
+            <li><a href="#features">園區特色</a></li>
+            <li><a href="#route">建議散步順序</a></li>
+            <li><a href="#table">景點比較表</a></li>
+            <li><a href="#photo">中央公園照片</a></li>
+            <li><a href="#video">影音報導</a></li>
+            <li><a href="#map">Google 地圖</a></li>
+            <li><a href="#tips">走讀小提醒</a></li>
+            <li><a href="#sources">資料來源</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <main id="main-content">
+        <article aria-label="台中中央公園專題報導">
+
+            <section id="intro">
+                <h2>一、中央公園簡介</h2>
+                <p>
+                    台中中央公園位於台中市西屯區水湳經貿園區，是台中重要的城市綠地之一。
+                    園區面積約 67.34 公頃，擁有寬廣的草地、樹木、步道與水池，
+                    提供市民散步、運動及親近自然的空間。
+                </p>
+                <p>
+                    中央公園的規劃結合智慧、低碳與創新的理念，不只是讓人休息的公園，
+                    也重視植物生態、環境教育與永續發展。園區規劃十二感官體驗設施，
+                    讓遊客透過不同感官認識周遭環境，感受自然與空間設計的關係。
+                </p>
+                <p>
+                    相較於以遊樂設施為主的公園，中央公園更強調自然地形、植栽景觀及生態棲地。
+                    不論是散步、慢跑、騎自行車或欣賞景色，都能依照自己的步調探索園區。
+                    這些開放空間也讓中央公園成為城市生活中接近自然的重要場所。
+                </p>
+                <p>
+                    公園地址：台中市西屯區中科路 2966 號。<br>
+                    園區開放時間與設施使用規定，請以中央公園官方網站最新公告為準。
+                </p>
+            </section>
+
+            <hr>
+
+            <section id="features">
+                <h2>二、園區特色</h2>
+
+                <h3>1. 十二感官體驗區</h3>
+                <p>
+                    中央公園規劃不同的感官體驗空間，讓遊客除了用眼睛欣賞景色，
+                    也能留意聲音、氣味、觸感及身體活動帶來的感受。
+                    這些設計增加了遊園的互動性，也讓人有機會重新注意平常容易忽略的環境細節。
+                </p>
+
+                <h3>2. 樂活步道與寬廣綠地</h3>
+                <p>
+                    園區內有步道、草地及休憩空間，適合散步、慢跑與戶外活動。
+                    沿途可以觀察樹木、植栽和地形的變化。由於園區範圍較大，
+                    遊客可以依照體力和停留時間選擇路線，不必一次走完所有區域。
+                </p>
+
+                <h3>3. 抹茶湖與自然景觀</h3>
+                <p>
+                    抹茶湖是中央公園受到遊客注意的景觀之一，湖水與周圍綠色植栽形成特色。
+                    在湖畔停留時，可以觀察水面、植物和光線變化，也能欣賞公園開闊的景色。
+                    參觀時應留意現場告示，並在安全範圍內活動。
+                </p>
+
+                <h3>4. 生態與永續環境</h3>
+                <p>
+                    公園內的植栽、水池與綠地提供植物生長及生物活動的環境。
+                    透過綠地規劃與自然景觀，中央公園呈現城市空間與自然環境共存的可能性。
+                    走訪時可以觀察植物分布，並思考城市公園如何兼顧休閒、生態與環境品質。
+                </p>
+
+                <h3>中央公園的三大特色整理</h3>
+                <ul>
+                    <li><strong>感官體驗：</strong>透過不同設施探索環境與身體感受。</li>
+                    <li><strong>休閒運動：</strong>利用步道、草地與開放空間進行散步及運動。</li>
+                    <li><strong>自然生態：</strong>欣賞植物、水池與公園內的自然景觀。</li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section id="route">
+                <h2>三、建議散步順序</h2>
+                <p>以下是本篇報導整理的走讀建議，並非官方指定路線，實際動線請依現場指標調整。</p>
+                <ol>
+                    <li><strong>第一站：入口與園區導覽。</strong>先查看現場地圖，了解園區分布與設施位置。</li>
+                    <li><strong>第二站：樂活步道。</strong>沿著步道散步，觀察植物、草地及地形變化。</li>
+                    <li><strong>第三站：抹茶湖周邊。</strong>欣賞湖水與綠色景觀，留意水面和植栽的變化。</li>
+                    <li><strong>第四站：十二感官體驗區。</strong>依現場指標尋找體驗設施，感受不同的空間設計。</li>
+                    <li><strong>第五站：綠地休息與觀察。</strong>在合適的休憩空間稍作休息，整理走讀心得。</li>
+                </ol>
+
+                <!-- 方法一（3/3）：行內樣式用左框線凸顯散步提醒。 -->
+                <p style="border-left: 4px solid #B8865B; padding-left: 14px;">
+                    散步提醒：園區範圍較大，建議穿著舒適的鞋子並預留充足時間。
+                </p>
+            </section>
+
+            <hr>
+
+            <section id="table">
+                <h2>四、景點比較表</h2>
+                <!-- 使用 CSS 設定表格框線，不使用舊式 border 屬性。 -->
+                <table>
+                    <caption>台中中央公園景點特色與觀察重點</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">景點或設施</th>
+                            <th scope="col">主要特色</th>
+                            <th scope="col">建議觀察重點</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">十二感官體驗區</th>
+                            <td>結合不同感官的體驗設計</td>
+                            <td>觀察設施如何引導遊客感受環境</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">樂活步道</th>
+                            <td>提供散步、運動與休憩空間</td>
+                            <td>觀察步道、樹木與地形的變化</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">抹茶湖</th>
+                            <td>具有辨識度的湖泊與綠色景觀</td>
+                            <td>欣賞湖水、植栽及周邊景色</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">生態綠地</th>
+                            <td>提供植物生長及生物活動的環境</td>
+                            <td>觀察植物與自然環境的關係</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr>
+
+            <section id="photo">
+                <h2>五、中央公園照片</h2>
+                <p>請將自己選用的中央公園照片放在 HTML 同一個資料夾中。</p>
+                <figure>
+                    <!-- 將 central-park.jpg 換成實際照片檔名。 -->
+                    <img src="https://biteamap.com/wp-content/uploads/20210106134436_90.jpg" alt="台中中央公園的綠地與自然景觀" width="720">
+                    <figcaption>
+                        台中中央公園的綠地與自然景觀。照片來源：請填入實際照片來源或拍攝者。
+                    </figcaption>
+                </figure>
+                <p>
+                    <a href="https://cpark.taichung.gov.tw/" target="_blank" rel="noopener noreferrer">
+                        前往臺中市中央公園官方網站查看園區資訊
+                    </a>
+                </p>
+            </section>
+
+            <hr>
+
+            <section id="video">
+                <h2>六、影音報導</h2>
+                <p>透過影片可以從不同角度認識台中中央公園，觀察園區規模、綠地景觀與休閒空間。</p>
+                <figure>
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/xsI680kt71Q"
+                        title="台中中央公園介紹影片"
+                        loading="lazy"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                    <figcaption>台中中央公園介紹影片。請確認影片內容與發布者資訊後，依實際影片更新圖說。</figcaption>
+                </figure>
+                <p>
+                    <a href="https://www.youtube.com/results?search_query=%E5%8F%B0%E4%B8%AD%E4%B8%AD%E5%A4%AE%E5%85%AC%E5%9C%92" target="_blank" rel="noopener noreferrer">
+                        在 YouTube 搜尋台中中央公園介紹影片
+                    </a>
+                </p>
+                <p><small>若嵌入影片無法播放，可使用上方連結尋找可觀看的影片。</small></p>
+            </section>
+
+            <hr>
+
+            <section id="map">
+                <h2>七、Google 地圖：找到台中中央公園</h2>
+                <p>
+                    台中中央公園位於台中市西屯區水湳經貿園區。
+                    可以先透過地圖確認位置與交通方式，抵達後再依照現場指標尋找入口和各個景點。
+                </p>
+
+                <!-- Google 地圖 iframe；地圖位置使用中央公園名稱查詢。 -->
+                <iframe
+                    class="map-frame"
+                    src="https://maps.google.com/maps?q=%E5%8F%B0%E4%B8%AD%E4%B8%AD%E5%A4%AE%E5%85%AC%E5%9C%92&amp;z=15&amp;output=embed"
+                    title="台中中央公園 Google 地圖"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+
+                <p>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%B0%E4%B8%AD%E4%B8%AD%E5%A4%AE%E5%85%AC%E5%9C%92" target="_blank" rel="noopener noreferrer">
+                        在 Google 地圖開啟台中中央公園
+                    </a>
+                </p>
+                <p><small>地圖由 Google 提供，實際交通動線及開放資訊請以地圖和官方公告為準。</small></p>
+            </section>
+
+            <hr>
+
+            <!-- aside 是補充資訊區，不取代主要景點介紹。 -->
+            <aside id="tips" aria-labelledby="tips-title">
+                <h2 id="tips-title">八、走讀小提醒</h2>
+                <details open>
+                    <summary>出發前可以注意哪些事情？</summary>
+                    <ul>
+                        <li>園區範圍較大，建議穿著舒適的鞋子並預留足夠時間。</li>
+                        <li>依照天氣準備飲用水、防曬用品或雨具。</li>
+                        <li>留意現場指標，並依照開放規定使用各項設施。</li>
+                        <li>觀察植物及生物時，請勿任意摘取植物或干擾動物。</li>
+                        <li>離開時記得帶走垃圾，一起維護公園環境。</li>
+                    </ul>
+                </details>
+            </aside>
+
+            <hr>
+
+            <section id="sources">
+                <h2>九、資料來源</h2>
+                <p>本報導依公開資料整理，散步順序與觀察建議由作者編排。交件前請確認各連結內容與照片來源。</p>
+                <ul>
+                    <li><a href="https://cpark.taichung.gov.tw/" target="_blank" rel="noopener noreferrer">臺中市中央公園官方網站</a></li>
+                    <li><a href="https://travel.taichung.gov.tw/" target="_blank" rel="noopener noreferrer">臺中觀光旅遊網</a></li>
+                    <li><a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%B0%E4%B8%AD%E4%B8%AD%E5%A4%AE%E5%85%AC%E5%9C%92" target="_blank" rel="noopener noreferrer">Google 地圖：台中中央公園</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=%E5%8F%B0%E4%B8%AD%E4%B8%AD%E5%A4%AE%E5%85%AC%E5%9C%92" target="_blank" rel="noopener noreferrer">YouTube：台中中央公園影片搜尋</a></li>
+                </ul>
+                <p><small>資料整理日期：2026 年 10 月 21 日。開放資訊可能更新，請以官方最新公告為準。</small></p>
+            </section>
+        </article>
+    </main>
+
+    <hr>
+
+    <footer>
+        <p><strong>HW06 HTML 與 CSS 作業｜台中中央公園報導</strong></p>
+        <p>作者：曾宇婕</p>
+        <p>
+            <small>CSS 教學參考：
+                <a href="https://steam.oxxostudio.tw/category/css/info/how-to-use.html" target="_blank" rel="noopener noreferrer">STEAM：開始使用 CSS</a>
+            </small>
+        </p>
+        <p><small>本文為課堂報導作業；照片與影片權利屬原作者或權利人。</small></p>
+        <p><a href="#top">回到頁首</a></p>
+    </footer>
+</body>
+</html>
